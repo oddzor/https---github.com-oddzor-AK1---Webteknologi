@@ -1,5 +1,5 @@
 const express = require('express');
-const { updateTeam, addTeamPlayers, removeTeamPlayers, getTeamWithPlayers, getAllTeams, deleteTeam } = require('../models/teamModel');
+const { updateTeam, addTeamPlayers, removeTeamPlayers, getTeamWithPlayers, getAllTeams, deleteTeam, addTeam } = require('../models/teamModel');
 const { getPlayerById } = require('../models/playerModel'); 
 const router = express.Router();
 
@@ -90,7 +90,6 @@ router.put('/lag/:id', (req, res) => {
     const teamId = req.params.id;
     const { navn, trener, spillere } = req.body;
 
-    // Validate input
     if (!navn || !trener || !Array.isArray(spillere) || spillere.length === 0) {
         return res.status(400).json({ error: 'Please provide valid team name, coach, and a list of player IDs.' });
     }

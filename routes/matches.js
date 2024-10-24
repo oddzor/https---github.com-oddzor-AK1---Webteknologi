@@ -19,27 +19,27 @@ router.post('/lag/kamp', (req, res) => {
 });
 
 router.get('/lag/kamper', (req, res) => {
-    const { lagId } = req.body;
-
-    console.log('Received lagId from body:', lagId); 
+    const { lagId } = req.query;
 
     if (!lagId) {
-        return res.status(400).json({ message: 'lagId må oppgis.' });  
+        return res.status(400).json({ error: 'Please provide a valid team ID (lagId).' });
     }
-d
+
     getMatchesByTeam(lagId, (err, results) => {
         if (err) {
             console.error('Error fetching matches:', err);
-            return res.status(500).json({ message: 'Error fetching matches.' });
+            return res.status(500).json({ error: 'Failed to fetch matches.' });
         }
 
         if (results.length === 0) {
-            return res.status(404).json({ message: 'No matches found for the given team.' });
+            return res.status(404).json({ message: 'No matches found for this team.' });
         }
 
-        return res.status(200).json({ matches: results });
+        res.status(200).json(results);
     });
 });
+
+
 
 router.get('/spiller/:id/kamper', (req, res) => {
     const playerId = req.params.id; 

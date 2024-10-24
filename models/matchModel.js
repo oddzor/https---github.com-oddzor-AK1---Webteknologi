@@ -7,7 +7,7 @@ function addMatch(lagId, motstander, dato, sted, callback) {
 
 function getMatchesByTeam(lagId, callback) {
     const sql = 'SELECT * FROM matches WHERE lag_id = ?';
-    db.query(sql, [lagId], callback); 
+    db.query(sql, [lagId], callback);
 }
 
 function getMatchesByPlayer(playerId, callback) {

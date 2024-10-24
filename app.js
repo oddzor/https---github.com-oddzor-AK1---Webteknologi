@@ -11,8 +11,8 @@ const db = require("./db");
 app.use(express.json());
 
 app.use('/api', playersRouter);
-app.use('/api', teamsRouter);
 app.use('/api', matchesRouter);
+app.use('/api', teamsRouter);
 
 app.post("/api/auth/register", async (req, res) => {
   const { navn, e_post, passord } = req.body;
